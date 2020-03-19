@@ -9,9 +9,7 @@ import com.momentum.active.activeshoppe.service.ActiveShoppeService;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,16 +53,20 @@ public class ActiveShoppeServiceImpl implements ActiveShoppeService {
         val availableProducts = getAllProducts();
         if (availableProducts.containsAll(products)) {
             val pointsRequired = products.stream().map(Product::getPoints)
-                    .reduce(0,Integer::sum);
+                    .reduce(0, Integer::sum);
             val pointsDifference = customerPoints - pointsRequired;
             if (pointsDifference >= 0) {
                 customer.setActiveDayPoints(Math.toIntExact(pointsDifference));
                 customerRepository.saveAndFlush(customer);
+                log.info("customer:{} purchased products: {} successfully ", customer, products);
                 return products;
             }
-            throw new ActiveShoppeBadRequestException("Number of points required: " + pointsRequired + "for purchase exceeds customers available points: " + customerPoints);
+            log.error("Number of points required: {} for purchase exceeds customers available points:{} ", pointsRequired, customerPoints);
+            throw new ActiveShoppeBadRequestException("Number of points required: " + pointsRequired + " for purchase exceeds customers available points: " + customerPoints);
 
         }
+
+        log.error("One or more of the products you selected: {} is currently unavailable. available products:{}", products, availableProducts);
         throw new ActiveShoppeResourceNotFoundException("One or more of the products you selected is currently unavailable.");
     }
 }

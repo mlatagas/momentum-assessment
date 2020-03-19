@@ -4,15 +4,16 @@ import com.google.common.collect.ImmutableList;
 import com.momentum.active.activeshoppe.data.repository.CustomerRepository;
 import com.momentum.active.activeshoppe.exception.ActiveShoppeBadRequestException;
 import com.momentum.active.activeshoppe.exception.ActiveShoppeResourceNotFoundException;
-import com.momentum.active.activeshoppe.model.Product;
 import com.momentum.active.activeshoppe.service.ActiveShoppeService;
 import lombok.val;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
 
+import static com.momentum.active.activeshoppe.ActiveShoppeUtil.getFakeProduct;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -23,6 +24,11 @@ class ActiveShoppeServiceImplTest {
 
     @Autowired
     private ActiveShoppeService classUnderTest;
+
+    @BeforeEach
+    void setUp() {
+
+    }
 
     @Test
     void should_get_all_available_products() {
@@ -61,20 +67,5 @@ class ActiveShoppeServiceImplTest {
         assertEquals(50, customerRepository.findByCustomerId(1).getActiveDayPoints());
     }
 
-    @Test
-    void should_purchase_available_products_and_decrement_customer_available_points_products() {
-        val productsPurchased = classUnderTest.purchaseProduct(1, ImmutableList.of(getFakeProduct(5, "Kanstock", 50)));
-        assertEquals(1, productsPurchased.size());
-        assertEquals(50, customerRepository.findByCustomerId(1).getActiveDayPoints());
-    }
 
-
-
-    private static Product getFakeProduct(int productCode, String productName, int pointsCost) {
-        return Product.builder()
-                .code(productCode)
-                .name(productName)
-                .points(pointsCost)
-                .build();
-    }
 }

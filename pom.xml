@@ -12,7 +12,7 @@
     <artifactId>active-shoppe</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>active-shoppe</name>
-    <description>Demo project for Spring Boot</description>
+    <description>REST Api to Facilitate the buying of Active Shoppe products with Daily Active customer points. </description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -63,7 +63,24 @@
             <scope>runtime</scope>
             <version>1.4.193</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.metrics</groupId>
+            <artifactId>spring-metrics</artifactId>
+            <version>0.5.1.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.prometheus</groupId>
+            <artifactId>simpleclient</artifactId>
+            <version>0.8.1</version>
+        </dependency>
+
+
     </dependencies>
+
+
 
     <build>
         <plugins>

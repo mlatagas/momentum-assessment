@@ -26,11 +26,5 @@ public class ProductDao {
     @Column(name="cost")
     private int cost;
 
-
-//    @ManyToOne(cascade = {PERSIST, MERGE})
-//    @JoinColumn(name="id_customer", nullable=false)
-//    @JsonIgnore
-//    private Customer customer;
-
 }
 

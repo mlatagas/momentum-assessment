@@ -26,11 +26,5 @@ public class CustomerDao {
     @Column(name="active_day_points")
     private int activeDayPoints;
 
-
-//    @OneToMany(cascade = {PERSIST, MERGE})
-//    @JoinColumn(name="id", nullable=false)
-//    @JsonIgnore
-//    private Product product;
-
 }
 
