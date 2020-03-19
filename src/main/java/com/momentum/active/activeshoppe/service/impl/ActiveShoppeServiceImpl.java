@@ -54,7 +54,8 @@ public class ActiveShoppeServiceImpl implements ActiveShoppeService {
         val customerPoints = customer.getActiveDayPoints();
         val availableProducts = getAllProducts();
         if (availableProducts.containsAll(products)) {
-            val pointsRequired = products.stream().map(it -> customerPoints).count();
+            val pointsRequired = products.stream().map(Product::getPoints)
+                    .reduce(0,Integer::sum);
             val pointsDifference = customerPoints - pointsRequired;
             if (pointsDifference >= 0) {
                 customer.setActiveDayPoints(Math.toIntExact(pointsDifference));
