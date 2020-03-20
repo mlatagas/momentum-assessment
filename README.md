@@ -95,22 +95,10 @@ Response:
                <optional>true</optional>
            </dependency>
            `
-   Prometheus        
-   
-           <dependency>
-               <groupId>org.springframework.metrics</groupId>
-               <artifactId>spring-metrics</artifactId>
-               <version>0.5.1.RELEASE</version>
-           </dependency>
-   
-   
-           <dependency>
-               <groupId>io.prometheus</groupId>
-               <artifactId>simpleclient</artifactId>
-               <version>0.8.1</version>
-           </dependency>`
-   
-   `
+**Monitoring**
+Prometheus
+vanilla set up
+`http://localhost:8080/active-shoppe-api/actuator`
    
    
            
