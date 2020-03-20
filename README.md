@@ -95,9 +95,11 @@ Response:
                <optional>true</optional>
            </dependency>
            `
+
 **Monitoring**
-Prometheus
-vanilla set up
+
+Prometheus (vanilla config)
+
 `http://localhost:8080/active-shoppe-api/actuator`
    
    
