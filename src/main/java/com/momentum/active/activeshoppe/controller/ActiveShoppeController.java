@@ -36,7 +36,7 @@ public class ActiveShoppeController {
 
     @PostMapping(value = "/v1/{customer-id}/purchase-product",consumes="application/json",
             produces="application/json")
-    @ApiOperation(value = "Product purchased",
+    @ApiOperation(value = "Products purchased",
             response = Product.class,
             responseContainer = "List")
     public ResponseEntity<List<Product>> purchaseProduct(@PathVariable("customer-id") int customerId, @RequestBody List<Product> products) {
