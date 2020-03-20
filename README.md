@@ -96,6 +96,9 @@ Response:
            </dependency>
            `
 
+**NB**
+IntelliJ Lombok plugin is required to build project otherwise java 11 features such as var/val will break 
+
 **Monitoring**
 
 Prometheus (vanilla config)
